@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mongrel Boots — Australian-made safety and work boots. Built to last in the toughest conditions.">
+  <title>Mongrel Boots — Built to Last</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Skip to main content — keyboard accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ================================================
+       HEADER / NAVIGATION
+       ================================================ -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Main navigation">
+
+        <!-- Logo -->
+        <a href="index.html" class="nav-logo" aria-label="Mongrel Boots — home">
+          MONGREL<span>BOOTS</span>
+        </a>
+
+        <!-- Mobile hamburger toggle -->
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-controls="nav-menu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Nav links -->
+        <ul class="nav-menu" id="nav-menu" role="menubar">
+          <li role="none"><a href="index.html"      role="menuitem" aria-current="page">Home</a></li>
+          <li role="none"><a href="products.html"   role="menuitem">Shop All</a></li>
+          <li role="none"><a href="#categories"     role="menuitem">Categories</a></li>
+          <li role="none"><a href="#"               role="menuitem">About</a></li>
+          <li role="none"><a href="#"               role="menuitem">Contact</a></li>
+        </ul>
+
+        <!-- Search + Cart actions -->
+        <div class="nav-actions" aria-label="Site actions">
+          <button type="button" aria-label="Search products">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+          <button type="button" class="cart-btn" aria-label="View cart, 2 items" id="cart-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <span class="cart-count" aria-live="polite" id="cart-count">2</span>
+          </button>
+        </div>
+
+      </nav>
+    </div>
+
+    <!-- Mobile menu (hidden by default, opened via JS) -->
+    <div class="container">
+      <!-- nav-menu is slotted here on mobile via JS class toggle -->
+    </div>
+  </header>
+
+  <!-- ================================================
+       MAIN CONTENT
+       ================================================ -->
+  <main id="main-content">
+
+    <!-- ── HERO ────────────────────────────────────── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+
+          <p class="hero-eyebrow">Australian Made · Safety Certified</p>
+
+          <h1 class="hero-title" id="hero-heading">
+            BUILT<br>TO <em>LAST</em>
+          </h1>
+
+          <p class="hero-subtitle">
+            Engineered for the worksite. Designed to outlast the job.
+            Mongrel Boots — tough footwear for people who get it done.
+          </p>
+
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary">
+              Shop Now
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+            <a href="#categories" class="btn btn-outline">Browse Categories</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURE BAR ──────────────────────────────── -->
+    <aside class="feature-bar" aria-label="Key features">
+      <div class="container">
+        <ul class="feature-list" role="list">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🛡️</span>
+            <span class="feature-title">Safety Rated</span>
+            <span class="feature-sub">AS/NZS 2210.3</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🚚</span>
+            <span class="feature-title">Free Shipping</span>
+            <span class="feature-sub">Orders over $150</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🔄</span>
+            <span class="feature-title">60-Day Returns</span>
+            <span class="feature-sub">No questions asked</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🇦🇺</span>
+            <span class="feature-title">Aussie Brand</span>
+            <span class="feature-sub">Since 1995</span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- ── FEATURED PRODUCTS ──────────────────────── -->
+    <section class="products-section" aria-labelledby="featured-heading">
+      <div class="container">
+
+        <header class="section-header">
+          <div>
+            <p class="section-label">New Arrivals</p>
+            <h2 class="section-title" id="featured-heading">Featured Boots</h2>
+          </div>
+          <a href="products.html" class="btn btn-dark">View All</a>
+        </header>
+
+        <!-- Product grid — semantic article elements for each product -->
+        <ul class="product-grid" role="list" aria-label="Featured products">
+
+          <li>
+            <article class="product-card" aria-label="Mongrel 9240E — Steel Cap Lace Up">
+              <div class="product-img-wrap">
+                <!-- Product image placeholder with proper alt text -->
+                <img
+                  src="assets/images/boot-1.jpg"
+                  alt="Mongrel 9240E black steel cap lace-up boot, side view"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                >
+                <div class="product-img-overlay" aria-hidden="true">
+                  <button class="btn btn-primary" style="font-size:11px;padding:10px 16px;">Quick Add</button>
+                </div>
+                <span class="product-badge">New</span>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Mongrel</p>
+                <h3 class="product-name">9240E Steel Cap Lace Up</h3>
+                <p class="product-price">$229.95</p>
+              </div>
+              <a href="product-detail.html" class="stretched-link" aria-label="View Mongrel 9240E Steel Cap Lace Up, $229.95"></a>
+            </article>
+          </li>
+
+          <li>
+            <article class="product-card" aria-label="Mongrel 9240YH — Honey Zip Side">
+              <div class="product-img-wrap">
+                <img
+                  src="assets/images/boot-2.jpg"
+                  alt="Mongrel 9240YH honey yellow zip-side boot, side view"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                >
+                <div class="product-img-overlay" aria-hidden="true">
+                  <button class="btn btn-primary" style="font-size:11px;padding:10px 16px;">Quick Add</button>
+                </div>
+                <span class="product-badge" style="background:var(--color-dark);color:var(--color-primary);">Popular</span>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Mongrel</p>
+                <h3 class="product-name">9240YH Honey Zip Side</h3>
+                <p class="product-price">
+                  <span class="was">$249.95</span>$199.95
+                </p>
+              </div>
+              <a href="product-detail.html" class="stretched-link" aria-label="View Mongrel 9240YH Honey Zip Side, on sale $199.95"></a>
+            </article>
+          </li>
+
+          <li>
+            <article class="product-card" aria-label="Mongrel 9240PR — PR Sole Boot">
+              <div class="product-img-wrap">
+                <img
+                  src="assets/images/boot-3.jpg"
+                  alt="Mongrel 9240PR black boot with PR sole, three-quarter view"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                >
+                <div class="product-img-overlay" aria-hidden="true">
+                  <button class="btn btn-primary" style="font-size:11px;padding:10px 16px;">Quick Add</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Mongrel</p>
+                <h3 class="product-name">9240PR PR Sole Boot</h3>
+                <p class="product-price">$249.95</p>
+              </div>
+              <a href="product-detail.html" class="stretched-link" aria-label="View Mongrel 9240PR PR Sole Boot, $249.95"></a>
+            </article>
+          </li>
+
+          <li>
+            <article class="product-card" aria-label="Mongrel 910Y — Lightweight Series">
+              <div class="product-img-wrap">
+                <img
+                  src="assets/images/boot-4.jpg"
+                  alt="Mongrel 910Y lightweight series boot, front view"
+                  loading="lazy"
+                  onerror="this.style.display='none'"
+                >
+                <div class="product-img-overlay" aria-hidden="true">
+                  <button class="btn btn-primary" style="font-size:11px;padding:10px 16px;">Quick Add</button>
+                </div>
+              </div>
+              <div class="product-info">
+                <p class="product-brand">Mongrel</p>
+                <h3 class="product-name">910Y Lightweight Series</h3>
+                <p class="product-price">$189.95</p>
+              </div>
+              <a href="product-detail.html" class="stretched-link" aria-label="View Mongrel 910Y Lightweight Series, $189.95"></a>
+            </article>
+          </li>
+
+        </ul>
+        <!-- end .product-grid -->
+
+      </div>
+    </section>
+
+    <!-- ── CATEGORIES ──────────────────────────────── -->
+    <section class="categories-section" id="categories" aria-labelledby="categories-heading">
+      <div class="container">
+
+        <header class="section-header">
+          <div>
+            <p class="section-label">Browse by</p>
+            <h2 class="section-title" id="categories-heading">Categories</h2>
+          </div>
+        </header>
+
+        <ul class="category-grid" role="list" aria-label="Product categories">
+          <li>
+            <article class="category-card cat-safety">
+              <div class="category-label">
+                <span>Shop →</span>
+                <h3>Safety</h3>
+              </div>
+              <a href="products.html?cat=safety" class="stretched-link" aria-label="Browse Safety boots"></a>
+            </article>
+          </li>
+          <li>
+            <article class="category-card cat-work">
+              <div class="category-label">
+                <span>Shop →</span>
+                <h3>Work</h3>
+              </div>
+              <a href="products.html?cat=work" class="stretched-link" aria-label="Browse Work boots"></a>
+            </article>
+          </li>
+          <li>
+            <article class="category-card cat-outdoor">
+              <div class="category-label">
+                <span>Shop →</span>
+                <h3>Outdoor</h3>
+              </div>
+              <a href="products.html?cat=outdoor" class="stretched-link" aria-label="Browse Outdoor boots"></a>
+            </article>
+          </li>
+          <li>
+            <article class="category-card cat-women">
+              <div class="category-label">
+                <span>Shop →</span>
+                <h3>Women</h3>
+              </div>
+              <a href="products.html?cat=women" class="stretched-link" aria-label="Browse Women's boots"></a>
+            </article>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+  </main>
+  <!-- end #main-content -->
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-logo">MONGREL<span>BOOTS</span></p>
+          <p>Built for Australian worksites since 1995. Safety-rated footwear engineered for the people who keep the country running.</p>
+        </div>
+
+        <nav aria-label="Shop links">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#">All Boots</a></li>
+            <li><a href="#">Safety Boots</a></li>
+            <li><a href="#">Work Boots</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Sale</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Support links">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Returns Policy</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Company links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Stockists</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="https://github.com/eastshg365-cmd/Mongrel-Boots">GitHub ↗</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Mongrel Boots. INFO20005 — Yifan Zhu — 1653579</p>
+        <p>Redesign project — University of Melbourne</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
