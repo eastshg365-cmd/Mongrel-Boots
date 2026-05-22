@@ -293,11 +293,11 @@ I removed the glassmorphism entirely and went with flat, high-contrast surfaces.
 
 At the start of this project, accessibility was a rubric item to satisfy. I knew WCAG existed. I knew contrast ratios mattered. By the end, I actually understood *why*.
 
-The yellow-on-black combination I chose for purely aesthetic reasons — because it looked bold and matched the brand — turned out to also be one of the most accessible color combinations possible (9.04:1 contrast ratio, exceeding WCAG AAA). This was not a coincidence; it was a lesson that **good brand thinking and good accessibility thinking often overlap**, because both require clear, legible communication.
+The yellow-on-black combination I chose for purely aesthetic reasons — because it looked bold and matched the brand — turned out to also be one of the most accessible color combinations possible (9.04:1 contrast ratio, exceeding WCAG AAA). This was not a coincidence; it was a lesson that **good brand thinking and good accessibility thinking often overlap**, because both require clear, legible communication. Research confirms that compliance with web accessibility standards, including contrast requirements, positively shapes user experience for both disabled and non-disabled users \[1\].
 
 **Focus States Mistake & Fix**
 
-I removed the browser's default `:focus` outline because it looked "ugly." This created an interface completely unusable for keyboard navigation. For users who navigate by keyboard, a missing focus state is the equivalent of removing all visual affordances from a touchscreen.
+I removed the browser's default `:focus` outline because it looked "ugly." This created an interface completely unusable for keyboard navigation. For users who navigate by keyboard, a missing focus state is the equivalent of removing all visual affordances from a touchscreen. Studies on display luminance contrast show that lower contrast is directly associated with greater visual fatigue, confirming that contrast is not merely aesthetic but physiological \[2\].
 
 Fix: Re-implemented `:focus-visible` with a custom styled outline — visible but brand-consistent.
 
@@ -380,7 +380,7 @@ I knew HTML existed. I knew CSS was "the styling language." But I thought of cod
 
 > What this project taught me is that design and code are not sequential phases. They are simultaneous constraints. A design decision that ignores how it will be coded creates technical debt. A coding decision that ignores design intent creates an inconsistent product.
 
-**The designer who understands how their decisions will be implemented** — who thinks in terms of CSS Grid while placing elements in Figma, who knows what a semantic HTML element is and why it matters — makes categorically **better design decisions** than one who doesn't. That is the designer I am working toward becoming.
+**The designer who understands how their decisions will be implemented** — who thinks in terms of CSS Grid while placing elements in Figma, who knows what a semantic HTML element is and why it matters — makes categorically **better design decisions** than one who doesn't. Research on design-based learning confirms that integrating coding knowledge into design education produces more implementation-aware designers, particularly in web contexts \[3\]. As Wilson et al. (2022) observe, CSS reduces aesthetic decisions to structured "properties and values," pushing designers toward systematic rather than intuitive choices \[4\]. That is the designer I am working toward becoming.
 
 ---
 
@@ -423,3 +423,15 @@ I knew HTML existed. I knew CSS was "the styling language." But I thought of cod
 ---
 
 *Yifan Zhu — 1653579 — INFO20005 — May 2026*
+
+---
+
+## References
+
+\[1\] Vollenwyder, B., Petralito, S., Iten, G., Brühlmann, F., Opwis, K., & Mekler, E. (2022). How compliance with web accessibility standards shapes the experiences of users with and without disabilities. *International Journal of Human-Computer Studies, 170*, 102956. https://doi.org/10.1016/j.ijhcs.2022.102956
+
+\[2\] Xie, X., Song, F., Liu, Y., Wang, S., & Yu, D. (2021). Study on the Effects of Display Color Mode and Luminance Contrast on Visual Fatigue. *IEEE Access, 9*, 35915–35923. https://doi.org/10.1109/access.2021.3061770
+
+\[3\] Tsai, C., Shih, W., Hsieh, F., Chen, Y., & Lin, C. (2022). Applying the design-based learning model to foster undergraduates' web design skills: the role of knowledge integration. *International Journal of Educational Technology in Higher Education, 19*. https://doi.org/10.1186/s41239-021-00308-4
+
+\[4\] Wilson, D., Hassan, S., Aljohani, N., Visvizi, A., & Nawaz, R. (2022). Demonstrating and negotiating the adoption of web design technologies: Cascading Style Sheets and the CSS Zen Garden. *Internet Histories, 7*, 27–46. https://doi.org/10.1080/24701475.2022.2055274
