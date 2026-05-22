@@ -122,6 +122,12 @@ The first interactive prototype revealed five critical usability failures during
 
 The same visual language was maintained for desktop, reorganising the grid from 2 columns (mobile) → 4 columns (desktop), ensuring responsive design. Navigation shifts from a hamburger menu to a full horizontal nav bar.
 
+### Final Coded Result — Live Website
+
+![Mongrel Boots redesigned website homepage — Built to Last hero section](website_homepage.png)
+
+*Final coded homepage: black/yellow brand identity, angular typography, semantic HTML structure, fully responsive*
+
 ### What Changed From Figma to Code
 
 Moving from Figma prototype to actual HTML/CSS revealed several decisions that had to be revised:
@@ -193,6 +199,12 @@ mongrel-boots/
   .product-grid { grid-template-columns: repeat(4, 1fr); }
 }
 ```
+
+### 4.1b — GitHub Repository Structure (Live)
+
+![GitHub repository showing website folder with css/, js/, index.html](github_repo.png)
+
+*Repository: `eastshg365-cmd/Mongrel-Boots` — commit history shows milestone-based workflow. Folder structure matches the Technical Code Map above.*
 
 ### 4.4 — External Libraries & Dependencies
 
