@@ -59,11 +59,11 @@ The Mongrel Boots mood board was built around the brand's existing logo. Yellow-
 
 | Direction | Reference | Verdict | Reason |
 |-----------|-----------|---------|--------|
-| **Professional Outdoor** | R.M. Williams | ✅ Selected | Best match for Mongrel's functional positioning |
-| **Glass/Frosted Texture** | Apple-style glass aesthetic | ❌ Rejected | Blurred backgrounds obscure operation buttons |
-| **Rounded Comfort Style** | Lifestyle footwear brands | ❌ Rejected | Contradicts brand's tough, angular identity |
-| **Luxury Avant-Garde** | High-end fashion brands | ❌ Rejected | Simplifies product info; wrong positioning |
-| **Competitive Sports** | Performance brands | ❌ Rejected | No search page; filtering criteria misaligned |
+| **Professional Outdoor** | R.M. Williams | Selected | Best match for Mongrel's functional positioning |
+| **Glass/Frosted Texture** | Apple-style glass aesthetic | Rejected | Blurred backgrounds obscure operation buttons |
+| **Rounded Comfort Style** | Lifestyle footwear brands | Rejected | Contradicts brand's tough, angular identity |
+| **Luxury Avant-Garde** | High-end fashion brands | Rejected | Simplifies product info; wrong positioning |
+| **Competitive Sports** | Performance brands | Rejected | No search page; filtering criteria misaligned |
 
 ### Before vs After — The Redesign Impact
 
@@ -85,13 +85,13 @@ The wireframe phase defined structural logic before any visual styling: **angula
 
 ### Step 4 — Art Direction Exploration
 
-**Direction 1 — ✅ SELECTED: Professional Outdoor**
+**Direction 1 — SELECTED: Professional Outdoor**
 Brand yellow/black fill + angular lines + modular hero shots. Successfully integrates brand tone with functional UI. Clear visual hierarchy: hero → categories → products → CTA.
 
-**Direction 2 — ❌ Glassmorphism/Frosted**
+**Direction 2 — Glassmorphism/Frosted**
 High visual impact, but blurred backgrounds reduce button discoverability. Mentor feedback confirmed: users miss key CTAs. This is consistent with research showing that low-contrast or poorly visible interactive elements risk being missed by users, making consent and navigation actions difficult to locate \[5\]. Rejected.
 
-**Direction 3 — ❌ Rounded / Marble Texture**
+**Direction 3 — Rounded / Marble Texture**
 Rounded corners and marble backgrounds conflict entirely with "tough outdoor" brand positioning. Rejected in early art direction review.
 
 ### Final Prototype — 8 Screens, Complete Shopping Flow

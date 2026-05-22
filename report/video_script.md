@@ -1,4 +1,4 @@
-# 🎬 视频旁白脚本（2分30秒）
+#  视频旁白脚本（2分30秒）
 > 按照5个评分点排列，建议录制时对着提词器念，节奏放慢。
 
 ---
@@ -36,7 +36,7 @@
 ---
 
 ## 3. Technical Implementation（1:15 – 1:45）
-**画面**: 切换到 VS Code / 代码编辑器，展示 HTML/CSS 代码结构
+**画面**: 切换到 VS Code，打开 `website/index.html` → 展示 `<nav>`, `<main>`, `<section>`, `<article>` 标签 → 切到 `website/css/style.css` → 展示 `:root` design tokens + `.product-grid` breakpoints
 
 > "For implementation, I chose HTML5 with semantic elements — using nav, main, section, and article tags — not just for structure, but because semantic HTML directly improves screen reader accessibility.
 
@@ -74,7 +74,7 @@
 
 ---
 
-## ⏱ 时间节奏参考
+##  时间节奏参考
 
 | 段落 | 时长 | 关键画面 |
 |------|------|--------|
