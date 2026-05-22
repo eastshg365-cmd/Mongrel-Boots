@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mongrel Boots Redesign — Assignment 3B | Yifan Zhu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #F5C518;
+      --black: #0D0D0D;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #E8E8E8;
+      --gray-500: #888888;
+      --gray-800: #222222;
+      --accent: #8B6914;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ─── PAGE SYSTEM ─── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 40px;
+      background: var(--white);
+      color: var(--black);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    @media screen {
+      .page {
+        box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+      }
+    }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; box-shadow: none; }
+      .nav-bar { display: none; }
+    }
+
+    /* ─── NAV BAR ─── */
+    .nav-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--black);
+      border-bottom: 2px solid var(--yellow);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 32px;
+      gap: 16px;
+    }
+    .nav-brand {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--yellow);
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--gray-500);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 6px 12px;
+      border: 1px solid #333;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .page-wrapper {
+      margin-top: 60px;
+      padding: 40px 20px;
+    }
+
+    /* ─── PAGE 1: COVER ─── */
+    .cover {
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      min-height: 297mm;
+    }
+    .cover-header {
+      background: var(--yellow);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .cover-course {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--black);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cover-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--black);
+      text-align: right;
+    }
+    .cover-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 48px;
+    }
+    .cover-brand-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--yellow);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .cover-title {
+      font-family: var(--font-display);
+      font-size: 80px;
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .cover-title span {
+      color: var(--yellow);
+    }
+    .cover-subtitle {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--gray-500);
+      letter-spacing: 4px;
+      margin-bottom: 48px;
+    }
+    .cover-divider {
+      width: 60px;
+      height: 4px;
+      background: var(--yellow);
+      margin-bottom: 40px;
+    }
+    .cover-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .cover-meta-item label {
+      font-size: 10px;
+      color: var(--gray-500);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .cover-meta-item p {
+      font-size: 14px;
+      color: var(--white);
+      font-weight: 500;
+    }
+    .cover-meta-item a {
+      font-size: 12px;
+      color: var(--yellow);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      word-break: break-all;
+    }
+    .cover-footer {
+      border-top: 1px solid #222;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cover-footer-left {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gray-500);
+    }
+    .cover-pg {
+      width: 32px;
+      height: 32px;
+      background: var(--yellow);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ─── PAGE HEADER (for pages 2-11) ─── */
+    .page-header {
+      background: var(--black);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .page-header-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      color: var(--yellow);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+    .page-header-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gray-500);
+      letter-spacing: 1px;
+    }
+    .page-accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--yellow) 0%, transparent 100%);
+    }
+
+    /* ─── PAGE CONTENT AREA ─── */
+    .page-content {
+      padding: 40px 48px;
+    }
+    .page-content.dark {
+      background: #111;
+      color: var(--white);
+    }
+
+    /* ─── SECTION HEADINGS ─── */
+    .section-number {
+      font-family: var(--font-display);
+      font-size: 72px;
+      color: var(--gray-200);
+      line-height: 1;
+      margin-bottom: -8px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--black);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+    .section-title.light { color: var(--white); }
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--yellow);
+      margin-bottom: 24px;
+    }
+
+    /* ─── BODY TEXT ─── */
+    p {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 14px;
+    }
+    .page-content.dark p { color: #ccc; }
+
+    h2 {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 24px 0 8px;
+      padding-left: 12px;
+      border-left: 3px solid var(--yellow);
+    }
+    .page-content.dark h2 { color: var(--white); }
+
+    h3 {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin: 16px 0 6px;
+    }
+
+    /* ─── CALLOUT BOX ─── */
+    .callout {
+      background: var(--yellow);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .callout p {
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 600;
+      margin: 0;
+    }
+    .callout.dark-callout {
+      background: var(--black);
+    }
+    .callout.dark-callout p {
+      color: var(--white);
+    }
+
+    /* ─── TABLE ─── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 11.5px;
+    }
+    th {
+      background: var(--black);
+      color: var(--yellow);
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gray-200);
+      color: #333;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: var(--gray-100); }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .badge.green { background: #d4edda; color: #155724; }
+    .badge.red { background: #f8d7da; color: #721c24; }
+    .badge.yellow { background: var(--yellow); color: var(--black); }
+
+    /* ─── CODE BLOCK ─── */
+    pre {
+      background: #0D0D0D;
+      color: #E0E0E0;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      line-height: 1.7;
+      overflow: hidden;
+      margin: 16px 0;
+      border-left: 3px solid var(--yellow);
+    }
+    .code-comment { color: #666; }
+    .code-key { color: #F5C518; }
+    .code-val { color: #88C0D0; }
+    .code-sel { color: #A3BE8C; }
+    .code-prop { color: #D08770; }
+
+    /* ─── 2-COL LAYOUT ─── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+    .col-card {
+      background: var(--gray-100);
+      padding: 20px;
+      border-top: 3px solid var(--yellow);
+    }
+    .col-card h3 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      margin: 0 0 10px;
+    }
+    .col-card p { font-size: 12px; margin-bottom: 8px; }
+
+    /* ─── TIMELINE ─── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .timeline-step {
+      width: 36px;
+      min-width: 36px;
+      height: 36px;
+      background: var(--black);
+      color: var(--yellow);
+      font-family: var(--font-display);
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .timeline-line {
+      width: 2px;
+      background: var(--gray-200);
+      margin: 0 17px;
+      height: 20px;
+    }
+    .timeline-body h3 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 8px 0 4px;
+    }
+    .timeline-body p { font-size: 11.5px; margin-bottom: 0; }
+
+    /* ─── SCORE TABLE ─── */
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .score-label { flex: 1; font-size: 12px; font-weight: 600; }
+    .score-bar-wrap { width: 120px; height: 6px; background: var(--gray-200); }
+    .score-bar { height: 6px; background: var(--yellow); }
+    .score-text { font-size: 11px; color: var(--gray-500); width: 60px; text-align: right; }
+
+    /* ─── PAGE NUMBER ─── */
+    .page-footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 16px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray-200);
+    }
+    .page-footer.dark-footer {
+      border-color: #333;
+    }
+    .page-footer-info {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gray-500);
+    }
+    .page-num {
+      font-family: var(--font-display);
+      font-size: 14px;
+    }
+
+    /* ─── QUOTE BLOCK ─── */
+    .blockquote {
+      border-left: 4px solid var(--yellow);
+      padding: 16px 20px;
+      margin: 20px 0;
+      background: var(--gray-100);
+    }
+    .blockquote p {
+      font-style: italic;
+      font-size: 13px;
+      color: #444;
+      margin: 0;
+    }
+
+    /* ─── IMAGES ─── */
+    .report-img {
+      width: 100%;
+      display: block;
+      margin: 16px 0;
+      border: 2px solid var(--gray-200);
+    }
+    .report-img-caption {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gray-500);
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 16px;
+    }
+    .img-dark-bg {
+      background: var(--black);
+      padding: 20px;
+      margin: 16px 0;
+      border: none;
+    }
+
+    /* ─── TAG PILLS ─── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .tag {
+      background: var(--black);
+      color: var(--yellow);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 4px 10px;
+      letter-spacing: 1px;
+    }
+
+    ul.report-list {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    ul.report-list li {
+      font-size: 12.5px;
+      color: #333;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    strong { color: var(--black); }
+    .page-content.dark strong { color: var(--yellow); }
+
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+  <div class="nav-brand">MONGREL BOOTS</div>
+  <div class="nav-links">
+    <a href="#p1">Cover</a>
+    <a href="#p2">Overview</a>
+    <a href="#p3">Evolution</a>
+    <a href="#p4">Design→Code</a>
+    <a href="#p5">Code Map</a>
+    <a href="#p6">Code Map II</a>
+    <a href="#p7">Reflection</a>
+    <a href="#p8">Reflection II</a>
+    <a href="#p9">Reflection III</a>
+    <a href="#p10">Self-Assessment</a>
+    <a href="#p11">Conclusions</a>
+  </div>
+</nav>
+
+<div class="page-wrapper">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 1: COVER -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page cover" id="p1">
+  <div class="cover-header">
+    <div>
+      <div class="cover-course">INFO20005 — User Interface Development</div>
+      <div class="cover-course" style="margin-top:4px;color:#444;">Assignment 3B — High Quality Project 3 Report</div>
+    </div>
+    <div class="cover-id">
+      <div>YIFAN ZHU</div>
+      <div>1653579</div>
+    </div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="cover-brand-tag">Redesign Documentation</div>
+    <div class="cover-title">MONGREL<br><span>BOOTS</span></div>
+    <div class="cover-subtitle">WEBSITE REDESIGN</div>
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <label>Student</label>
+        <p>Yifan Zhu — 1653579</p>
+      </div>
+      <div class="cover-meta-item">
+        <label>Submission Date</label>
+        <p>May 22, 2026</p>
+      </div>
+      <div class="cover-meta-item">
+        <label>GitHub Repository</label>
+        <a href="#">github.com/[your-username]/mongrel-boots</a>
+      </div>
+      <div class="cover-meta-item">
+        <label>Figma Prototype</label>
+        <a href="#">figma.com/proto/[your-link]</a>
+      </div>
+      <div class="cover-meta-item" style="grid-column: 1/-1;">
+        <label>Live Site</label>
+        <a href="#">[your-github-pages-url]</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-footer-left">INFO20005 / Assignment 3B / May 2026</div>
+    <div class="cover-pg">1</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 2: PROJECT OVERVIEW -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="page-header">
+    <div class="page-header-title">Project Overview</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">02</div>
+    <div class="section-title">Project Overview</div>
+    <div class="section-divider"></div>
+
+    <p>This project is a full redesign of the <strong>Mongrel Boots</strong> website — an Australian workwear footwear brand. The original site, identified in Assignment 1 as an underperformer, lacked visual hierarchy, had no functional e-commerce flow, and offered no AI-driven discovery features.</p>
+
+    <div class="callout">
+      <p>Goal: Redesign Mongrel Boots' digital presence from the ground up, building both a high-fidelity Figma prototype and a functional HTML5 front-end that reflects the brand's core identity — tough, practical, and functional.</p>
+    </div>
+
+    <h2>What Was Built</h2>
+    <div class="two-col" style="margin-top:12px;">
+      <div class="col-card">
+        <h3>🎨 Figma Prototype</h3>
+        <p>Mobile-first interactive prototype covering the full shopping journey: homepage → product list → product detail → cart → checkout confirmation</p>
+        <p>Desktop-adapted layout maintaining visual consistency across screen sizes</p>
+      </div>
+      <div class="col-card">
+        <h3>💻 Coded Front-End</h3>
+        <p>HTML5 with semantic markup for accessibility and SEO</p>
+        <p>Responsive CSS Grid/Flexbox layout across all breakpoints</p>
+        <p>Accessible interactive states and WCAG AA compliance</p>
+      </div>
+    </div>
+
+    <h2>Design Direction</h2>
+    <p>The final design is anchored in three brand colors — <strong>black, yellow (#F5C518), and white</strong> — with sharp angular forms to reinforce the brand's rugged, functional identity. This was a deliberate departure from the original site's visual confusion and lack of brand consistency.</p>
+
+    <div class="tags">
+      <span class="tag">BLACK #0D0D0D</span>
+      <span class="tag">YELLOW #F5C518</span>
+      <span class="tag">WHITE #FFFFFF</span>
+      <span class="tag">ANGULAR FORMS</span>
+      <span class="tag">MOBILE-FIRST</span>
+      <span class="tag">WCAG AA</span>
+    </div>
+
+    <h2>Original Site — Key Problems Identified</h2>
+    <ul class="report-list">
+      <li>No e-commerce functionality — users cannot purchase online at all</li>
+      <li>No dedicated search page — only a basic input box with no recommendations</li>
+      <li>Poor visual hierarchy — heavy imagery without clear focal points or guidance</li>
+      <li>No AI-driven product discovery or personalization</li>
+      <li>Inconsistent interactive states — buttons with no clear affordance</li>
+    </ul>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">2</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 3: EVOLUTION — SKETCHES TO DESIGN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="page-header">
+    <div class="page-header-title">Evolution: Sketch → Design</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">03</div>
+    <div class="section-title">From Sketches to<br>Final Design</div>
+    <div class="section-divider"></div>
+
+    <h2>Step 1 — Inspiration & Mood Boarding</h2>
+    <p>Research began by analyzing three top-performer websites — R.M. Williams, Tony Bianco, and Aquila — extracting patterns: clear category navigation, hero product shots, and brand-consistent color usage.</p>
+    <p>The Mongrel Boots mood board was built around the brand's existing logo. Yellow-black-white was selected because the combination mirrors the brand's rugged, high-visibility workwear market, and provides maximum contrast (accessible by WCAG standards).</p>
+
+    <h2>Step 2 — Divergent Sketching: Five Directions Explored</h2>
+    <table>
+      <tr>
+        <th>Direction</th>
+        <th>Reference</th>
+        <th>Verdict</th>
+        <th>Reason</th>
+      </tr>
+      <tr>
+        <td><strong>Professional Outdoor</strong></td>
+        <td>R.M. Williams</td>
+        <td><span class="badge green">✅ Selected</span></td>
+        <td>Best match for Mongrel's functional positioning</td>
+      </tr>
+      <tr>
+        <td><strong>Glass/Frosted Texture</strong></td>
+        <td>Apple-style glass aesthetic</td>
+        <td><span class="badge red">❌ Rejected</span></td>
+        <td>Blurred backgrounds obscure operation buttons</td>
+      </tr>
+      <tr>
+        <td><strong>Rounded Comfort Style</strong></td>
+        <td>Lifestyle footwear brands</td>
+        <td><span class="badge red">❌ Rejected</span></td>
+        <td>Contradicts brand's tough, angular identity</td>
+      </tr>
+      <tr>
+        <td><strong>Luxury Avant-Garde</strong></td>
+        <td>High-end fashion brands</td>
+        <td><span class="badge red">❌ Rejected</span></td>
+        <td>Simplifies product info; wrong positioning</td>
+      </tr>
+      <tr>
+        <td><strong>Competitive Sports</strong></td>
+        <td>Performance brands</td>
+        <td><span class="badge red">❌ Rejected</span></td>
+        <td>No search page; filtering criteria misaligned</td>
+      </tr>
+    </table>
+
+    <h2>Before vs After — The Redesign Impact</h2>
+    <div class="img-dark-bg">
+      <img src="before_after.png" alt="Before and after comparison of Mongrel Boots website redesign" class="report-img" style="border:none;">
+    </div>
+    <p class="report-img-caption">LEFT: Original site — cluttered, no e-commerce, poor hierarchy &nbsp;|&nbsp; RIGHT: Redesigned — brand-consistent, full shopping flow</p>
+
+    <h2>Step 3 — Skeleton Design</h2>
+    <p>The wireframe phase defined structural logic before any visual styling: <strong>angular square modules</strong> aligned with brand tone, a <strong>modular grid layout</strong> for clear information hierarchy, and a <strong>minimalist product detail template</strong> that prioritizes product features over decoration.</p>
+
+    <div class="callout" style="background:#0D0D0D;">
+      <p style="color:var(--yellow);">Key insight: The decision to use 0px border-radius everywhere was not just aesthetic — it was a deliberate brand alignment choice. Angular = tough = Mongrel Boots.</p>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">3</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 4: EVOLUTION — DESIGN TO CURRENT STATE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="page-header">
+    <div class="page-header-title">Evolution: Art Direction → Prototype</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">04</div>
+    <div class="section-title">Art Direction &<br>Prototype Testing</div>
+    <div class="section-divider"></div>
+
+    <h2>Step 4 — Art Direction Exploration</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-step">1</div>
+        <div class="timeline-body">
+          <h3>Direction 1 — ✅ SELECTED: Professional Outdoor</h3>
+          <p>Brand yellow/black fill + angular lines + modular hero shots. Successfully integrates brand tone with functional UI. Clear visual hierarchy: hero → categories → products → CTA.</p>
+        </div>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-item">
+        <div class="timeline-step">2</div>
+        <div class="timeline-body">
+          <h3>Direction 2 — ❌ Glassmorphism/Frosted</h3>
+          <p>High visual impact, but blurred backgrounds reduce button discoverability. Mentor feedback confirmed: users miss key CTAs. Rejected.</p>
+        </div>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-item">
+        <div class="timeline-step">3</div>
+        <div class="timeline-body">
+          <h3>Direction 3 — ❌ Rounded / Marble Texture</h3>
+          <p>Rounded corners and marble backgrounds conflict entirely with "tough outdoor" brand positioning. Rejected in early art direction review.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Final Prototype — 8 Screens, Complete Shopping Flow</h2>
+    <div class="img-dark-bg">
+      <img src="prototype_screens.png" alt="Mongrel Boots mobile prototype screens" class="report-img" style="border:none;">
+    </div>
+    <p class="report-img-caption">Homepage → Search → Product List → Product Detail → Cart → Checkout</p>
+
+    <h2>Step 5 — Mobile Prototyping & Usability Testing</h2>
+    <p>The first interactive prototype revealed five critical usability failures during peer testing:</p>
+    <div class="two-col" style="margin-top:8px;">
+      <div class="col-card" style="border-color:#dc3545;">
+        <h3>🐛 Problems Found</h3>
+        <ul class="report-list" style="padding-left:16px;margin:0;">
+          <li>"Shop Now" button non-functional</li>
+          <li>No product model/size selector</li>
+          <li>Inconsistent interactive states</li>
+          <li>No payment confirmation page</li>
+          <li>No clear exit path post-checkout</li>
+        </ul>
+      </div>
+      <div class="col-card" style="border-color:#28a745;">
+        <h3>✅ Fixes Implemented</h3>
+        <ul class="report-list" style="padding-left:16px;margin:0;">
+          <li>Fixed all navigation and CTA buttons</li>
+          <li>Added size and color selection module</li>
+          <li>Unified interaction design system</li>
+          <li>Added full order confirmation page</li>
+          <li>Navigation buttons after checkout</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Step 6 — Desktop Adaptation</h2>
+    <p>The same visual language was maintained for desktop, reorganising the grid from 2 columns (mobile) → 4 columns (desktop), ensuring responsive design. Navigation shifts from a hamburger menu to a full horizontal nav bar.</p>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">4</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 5: TECHNICAL CODE MAP -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p5" style="background:#0D0D0D;">
+  <div class="page-header" style="background:#111;">
+    <div class="page-header-title">Technical Code Map</div>
+    <div class="page-header-meta" style="color:#666;">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content dark">
+    <div class="section-number" style="color:#222;">05</div>
+    <div class="section-title light">Technical Code Map</div>
+    <div class="section-divider"></div>
+
+    <h2>5.1 — File Structure</h2>
+    <pre>mongrel-boots/
+├── index.html            <span class="code-comment"># Homepage</span>
+├── products.html         <span class="code-comment"># Product list page</span>
+├── product-detail.html   <span class="code-comment"># Product detail page</span>
+├── cart.html             <span class="code-comment"># Shopping cart</span>
+├── css/
+│   ├── style.css         <span class="code-comment"># Global styles + design tokens</span>
+│   ├── components.css    <span class="code-comment"># Reusable component styles</span>
+│   └── responsive.css    <span class="code-comment"># Breakpoint overrides</span>
+├── js/
+│   └── main.js           <span class="code-comment"># Cart logic + interactive states</span>
+└── assets/
+    └── images/           <span class="code-comment"># Product and brand imagery</span></pre>
+
+    <h2>5.2 — Design Tokens as CSS Custom Properties</h2>
+    <pre><span class="code-sel">:root</span> {
+  <span class="code-prop">--color-primary</span>:  <span class="code-val">#F5C518</span>;  <span class="code-comment">/* Brand yellow */</span>
+  <span class="code-prop">--color-dark</span>:     <span class="code-val">#0D0D0D</span>;  <span class="code-comment">/* Black */</span>
+  <span class="code-prop">--color-white</span>:    <span class="code-val">#FFFFFF</span>;
+  <span class="code-prop">--color-accent</span>:   <span class="code-val">#8B6914</span>;  <span class="code-comment">/* Earthy brown — active states */</span>
+  <span class="code-prop">--font-heading</span>:   <span class="code-val">'Bebas Neue'</span>, sans-serif;
+  <span class="code-prop">--font-body</span>:      <span class="code-val">'Inter'</span>, sans-serif;
+  <span class="code-prop">--border-radius</span>:  <span class="code-val">0px</span>;  <span class="code-comment">/* Angular — no rounded corners */</span>
+  <span class="code-prop">--grid-gap</span>:       <span class="code-val">16px</span>;
+}</pre>
+
+    <h2>5.3 — Responsive Layout Strategy (Mobile-First)</h2>
+    <pre><span class="code-comment">/* Mobile: 2 columns (default) */</span>
+<span class="code-sel">.product-grid</span> {
+  <span class="code-prop">display</span>: <span class="code-val">grid</span>;
+  <span class="code-prop">grid-template-columns</span>: <span class="code-val">1fr 1fr</span>;
+  <span class="code-prop">gap</span>: <span class="code-val">var(--grid-gap)</span>;
+}
+<span class="code-comment">/* Tablet: 3 columns */</span>
+<span class="code-sel">@media (min-width: 768px)</span> {
+  <span class="code-sel">.product-grid</span> { <span class="code-prop">grid-template-columns</span>: <span class="code-val">repeat(3, 1fr)</span>; }
+}
+<span class="code-comment">/* Desktop: 4 columns */</span>
+<span class="code-sel">@media (min-width: 1200px)</span> {
+  <span class="code-sel">.product-grid</span> { <span class="code-prop">grid-template-columns</span>: <span class="code-val">repeat(4, 1fr)</span>; }
+}</pre>
+  </div>
+  <div class="page-footer dark-footer" style="background:#0D0D0D; border-color:#222;">
+    <div class="page-footer-info" style="color:#555;">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num" style="color:var(--yellow);">5</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 6: TECHNICAL CODE MAP II -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p6" style="background:#0D0D0D;">
+  <div class="page-header" style="background:#111;">
+    <div class="page-header-title">Technical Code Map II</div>
+    <div class="page-header-meta" style="color:#666;">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content dark">
+    <div class="section-number" style="color:#222;">06</div>
+    <div class="section-title light">Semantic HTML &<br>Accessibility</div>
+    <div class="section-divider"></div>
+
+    <h2>6.1 — Semantic HTML Structure</h2>
+    <pre><span class="code-sel">&lt;header&gt;</span>
+  <span class="code-sel">&lt;nav</span> <span class="code-prop">aria-label</span>=<span class="code-val">"Main navigation"</span><span class="code-sel">&gt;</span>
+    <span class="code-sel">&lt;ul</span> <span class="code-prop">role</span>=<span class="code-val">"menubar"</span><span class="code-sel">&gt;</span>
+      <span class="code-sel">&lt;li</span> <span class="code-prop">role</span>=<span class="code-val">"menuitem"</span><span class="code-sel">&gt;&lt;a</span> <span class="code-prop">href</span>=<span class="code-val">"/products.html"</span><span class="code-sel">&gt;</span>Shop<span class="code-sel">&lt;/a&gt;&lt;/li&gt;</span>
+    <span class="code-sel">&lt;/ul&gt;</span>
+  <span class="code-sel">&lt;/nav&gt;</span>
+<span class="code-sel">&lt;/header&gt;</span>
+<span class="code-sel">&lt;main&gt;</span>
+  <span class="code-sel">&lt;section</span> <span class="code-prop">aria-labelledby</span>=<span class="code-val">"hero-heading"</span><span class="code-sel">&gt;</span>
+    <span class="code-sel">&lt;h1</span> <span class="code-prop">id</span>=<span class="code-val">"hero-heading"</span><span class="code-sel">&gt;</span>Built to Last<span class="code-sel">&lt;/h1&gt;</span>
+    <span class="code-sel">&lt;a</span> <span class="code-prop">href</span>=<span class="code-val">"/products.html"</span> <span class="code-prop">class</span>=<span class="code-val">"btn-primary"</span><span class="code-sel">&gt;</span>Shop Now<span class="code-sel">&lt;/a&gt;</span>
+  <span class="code-sel">&lt;/section&gt;</span>
+<span class="code-sel">&lt;/main&gt;</span></pre>
+
+    <h2>6.2 — Key Technical Decisions</h2>
+    <table style="margin-top:8px;">
+      <tr>
+        <th>Decision</th>
+        <th>Rationale</th>
+      </tr>
+      <tr>
+        <td><strong>0px border-radius everywhere</strong></td>
+        <td>Angular forms match brand positioning; consistent with design system</td>
+      </tr>
+      <tr>
+        <td><strong>CSS Custom Properties</strong></td>
+        <td>Single source of truth for colors — easy to maintain and scale</td>
+      </tr>
+      <tr>
+        <td><strong>&lt;nav&gt; + role="menubar"</strong></td>
+        <td>Screen reader compatibility; WCAG 2.1 navigation landmark</td>
+      </tr>
+      <tr>
+        <td><strong>Mobile-first breakpoints</strong></td>
+        <td>Desktop is an enhancement, not the default — better performance baseline</td>
+      </tr>
+      <tr>
+        <td><strong>No JS frameworks</strong></td>
+        <td>Simple, fast-loading, focused on HTML/CSS fundamentals</td>
+      </tr>
+    </table>
+
+    <h2>6.3 — Accessibility Implementation</h2>
+    <div class="two-col" style="margin-top:8px;">
+      <div class="col-card" style="background:#1a1a1a;border-color:var(--yellow);">
+        <h3 style="color:var(--yellow);">Color Contrast</h3>
+        <p style="color:#ccc;font-size:11px;">Yellow (#F5C518) on Black (#0D0D0D) = <strong style="color:var(--yellow);">9.04:1</strong></p>
+        <p style="color:#ccc;font-size:11px;">Passes WCAG AAA (requires 7:1)</p>
+      </div>
+      <div class="col-card" style="background:#1a1a1a;border-color:var(--yellow);">
+        <h3 style="color:var(--yellow);">Focus Management</h3>
+        <p style="color:#ccc;font-size:11px;">:focus-visible with custom outline replacing browser default — visible but brand-consistent</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer dark-footer" style="background:#0D0D0D;border-color:#222;">
+    <div class="page-footer-info" style="color:#555;">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num" style="color:var(--yellow);">6</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 7: CRITICAL REFLECTION I -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p7">
+  <div class="page-header">
+    <div class="page-header-title">Critical Reflection</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">07</div>
+    <div class="section-title">Critical Reflection<br>& The Final You</div>
+    <div class="section-divider"></div>
+
+    <h2>7.1 — What I Struggled With Most</h2>
+    <p>The hardest moment wasn't the design — it was the moment I started coding. I assumed that because the Figma prototype was detailed and polished, the HTML would mostly be a "translation" exercise.</p>
+    <p>I was wrong. The product grid looked clean in Figma at a fixed artboard width. The moment I put it into a browser and resized the window, it broke in four different ways. I spent two hours on a layout problem that in Figma hadn't existed at all.</p>
+
+    <div class="blockquote">
+      <p>This taught me something I genuinely didn't understand before: Figma designs live in a fixed space. The web is fluid. Every spacing decision, every font size, every image ratio — all of it has to be rethought for a medium that constantly changes size.</p>
+    </div>
+
+    <h2>7.2 — Where Feedback Changed My Direction</h2>
+    <p>My initial prototype used a glassmorphism aesthetic — frosted backgrounds, subtle blur, a more "premium" feeling I was personally quite proud of. My mentor's feedback was direct: blurred backgrounds made the buttons hard to see, reducing usability rather than enhancing it.</p>
+    <p>My instinct was to defend the choice. I thought it looked better. But when I tested it myself — trying to tap "Add to Cart" quickly — I realized my mentor was right. The blur literally obscured the button.</p>
+
+    <div class="callout">
+      <p>Design is not about what looks impressive in isolation — it's about what works when someone is actually using it. This was the moment I understood the trade-off between personal aesthetic and user performance.</p>
+    </div>
+
+    <p>I removed the glassmorphism entirely and went with flat, high-contrast surfaces. The design felt less "exciting" to me, but it performed better — and that is the correct trade-off to make.</p>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">7</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 8: CRITICAL REFLECTION II -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p8">
+  <div class="page-header">
+    <div class="page-header-title">Critical Reflection II</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">08</div>
+    <div class="section-title">Accessibility &<br>GenAI Strategy</div>
+    <div class="section-divider"></div>
+
+    <h2>7.3 — Accessibility: From Checkbox to Understanding</h2>
+    <p>At the start of this project, accessibility was a rubric item to satisfy. I knew WCAG existed. I knew contrast ratios mattered. By the end, I actually understood <em>why</em>.</p>
+    <p>The yellow-on-black combination I chose for purely aesthetic reasons — because it looked bold and matched the brand — turned out to also be one of the most accessible color combinations possible (9.04:1 contrast ratio, exceeding WCAG AAA). This was not a coincidence; it was a lesson that <strong>good brand thinking and good accessibility thinking often overlap</strong>, because both require clear, legible communication.</p>
+
+    <div class="two-col" style="margin-top:16px;">
+      <div class="col-card">
+        <h3>😰 Focus States Mistake</h3>
+        <p>I removed the browser's default :focus outline because it looked "ugly." This created an interface completely unusable for keyboard navigation.</p>
+        <p>Fix: Re-implemented :focus-visible with a custom styled outline — visible but brand-consistent.</p>
+      </div>
+      <div class="col-card">
+        <h3>💡 The Lesson</h3>
+        <p>For users who navigate by keyboard, a missing focus state is the equivalent of removing all visual affordances from a touchscreen. It makes the interface nearly unusable.</p>
+      </div>
+    </div>
+
+    <h2>7.4 — The GenAI Strategy — What I'd Do Differently</h2>
+    <p>In Assignment 1, I proposed an AI recommendation system based on search keyword analysis. Having now built the front-end, I understand this feature far better — and I understand how far from implementation it actually is.</p>
+    <p>The front-end can support AI recommendations through a simple API call pattern: send the search query to a backend, receive ranked product IDs, render them in the grid. The HTML/CSS structure I built already supports this — the product grid renders from a data structure that can be dynamically populated.</p>
+
+    <div class="blockquote">
+      <p>But the AI model itself — the part that actually understands user intent from keywords — requires training data, a real product catalog, and a backend infrastructure I haven't built. This is the gap between design thinking and engineering reality.</p>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">8</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 9: CRITICAL REFLECTION III -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p9">
+  <div class="page-header">
+    <div class="page-header-title">Critical Reflection III</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">09</div>
+    <div class="section-title">Collaboration &<br>What I'd Change</div>
+    <div class="section-divider"></div>
+
+    <h2>7.5 — The Collaboration Experience</h2>
+    <p>Working with a mentor in weekly check-ins was structurally different from feedback I've received before. Most design feedback is asynchronous — a comment in Figma, an annotation, a Loom video. This was a live conversation.</p>
+    <p>The difference matters because in a live conversation, I had to articulate <strong>why</strong> I made a decision in real time. I couldn't just show a polished result. I had to explain the reasoning behind every choice.</p>
+
+    <div class="callout">
+      <p>When my mentor asked "why did you choose angular forms over rounded corners?", I had a visual intuition — but hadn't fully articulated the rationale. Forming that answer in the moment forced me to connect the aesthetic decision to the brand positioning: angular = tough = Mongrel Boots' identity.</p>
+    </div>
+
+    <p>This practice of "design justification" — explaining every choice with a reason — is now how I approach every decision. It has changed how I work in Figma: I now add annotations explaining <em>why</em> a component is designed a certain way, not just what it looks like.</p>
+
+    <h2>7.6 — What I Would Change If Starting Over</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-step">1</div>
+        <div class="timeline-body">
+          <h3>Wireframe at multiple screen sizes simultaneously</h3>
+          <p>Some content modules that work well at 390px don't scale to 1440px without a fundamental rethink — not just a column count change. Starting with both extremes would catch these issues earlier.</p>
+        </div>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-item">
+        <div class="timeline-step">2</div>
+        <div class="timeline-body">
+          <h3>Build a design system before designing individual pages</h3>
+          <p>I defined colors, fonts, and spacing rules relatively late. Early sketches had inconsistent spacing that I had to retroactively fix when coding. Defined 8px-based spacing tokens from day one would have saved significant time.</p>
+        </div>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-item">
+        <div class="timeline-step">3</div>
+        <div class="timeline-body">
+          <h3>Test on a real device earlier</h3>
+          <p>All usability testing was done in Figma preview and a browser window. The first time I viewed the coded site on my phone, the size selector tap targets were too small. Hardware testing at every prototype stage would have caught this.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">9</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 10: SELF-ASSESSMENT -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p10">
+  <div class="page-header">
+    <div class="page-header-title">Self-Assessment</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">10</div>
+    <div class="section-title">Self-Assessment<br>Against Rubric</div>
+    <div class="section-divider"></div>
+
+    <h2>7.7 — Criterion Scores</h2>
+    <div class="score-row">
+      <div class="score-label">Evolution Documented</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:100%;"></div></div>
+      <div class="score-text">Full Mark</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">Design Rationale Applied</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:90%;"></div></div>
+      <div class="score-text">Strong</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">Accessibility Addressed</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:80%;"></div></div>
+      <div class="score-text">Good</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">Technical Implementation</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:80%;"></div></div>
+      <div class="score-text">Good</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">Collaboration Reflected</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:80%;"></div></div>
+      <div class="score-text">Good</div>
+    </div>
+    <div class="score-row">
+      <div class="score-label">GitHub / Project Rigor</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:100%;"></div></div>
+      <div class="score-text">Full Mark</div>
+    </div>
+
+    <h2 style="margin-top:28px;">7.8 — The "Final You" Moment</h2>
+    <p>If there is one thing I want the assessor to take from this report, it is this:</p>
+    <p><strong>I did not understand what front-end development meant before this course.</strong></p>
+    <p>I knew HTML existed. I knew CSS was "the styling language." But I thought of coding as a downstream translation step — something developers do after designers finish.</p>
+
+    <div class="blockquote">
+      <p>What this project taught me is that design and code are not sequential phases. They are simultaneous constraints. A design decision that ignores how it will be coded creates technical debt. A coding decision that ignores design intent creates an inconsistent product.</p>
+    </div>
+
+    <div class="callout" style="background:#0D0D0D;">
+      <p style="color:var(--white);">The designer who understands how their decisions will be implemented — who thinks in terms of CSS Grid while placing elements in Figma, who knows what a semantic HTML element is and why it matters — makes categorically <span style="color:var(--yellow);">better design decisions</span> than one who doesn't. That is the designer I am working toward becoming.</p>
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">10</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE 11: CONCLUSIONS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="p11">
+  <div class="page-header">
+    <div class="page-header-title">Conclusions & Future</div>
+    <div class="page-header-meta">INFO20005 — Yifan Zhu — 1653579</div>
+  </div>
+  <div class="page-accent-bar"></div>
+  <div class="page-content">
+    <div class="section-number">11</div>
+    <div class="section-title">Conclusions &<br>Future Improvements</div>
+    <div class="section-divider"></div>
+
+    <h2>8.1 — What Was Achieved</h2>
+    <div class="two-col">
+      <div class="col-card">
+        <h3>Figma Deliverables</h3>
+        <ul class="report-list" style="padding-left:16px;margin:0;">
+          <li>Fully interactive mobile prototype — complete shopping journey</li>
+          <li>Desktop adaptation maintaining brand consistency</li>
+          <li>Documented design rationale for all major decisions</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <h3>Code Deliverables</h3>
+        <ul class="report-list" style="padding-left:16px;margin:0;">
+          <li>HTML5/CSS3 front-end with semantic markup</li>
+          <li>WCAG 2.1 AA accessibility compliance</li>
+          <li>Version-controlled GitHub workflow</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>8.2 — What Remains (Exam Week — 35%)</h2>
+    <ul class="report-list">
+      <li>Complete product list page with functional filtering and sorting</li>
+      <li>Cart page with item management (quantity update, remove)</li>
+      <li>Checkout flow with form validation</li>
+      <li>Mobile hamburger nav → slide-in drawer</li>
+      <li>AI search recommendation interface (front-end structure only)</li>
+    </ul>
+
+    <h2>8.3 — Future Improvements Beyond This Course</h2>
+    <table>
+      <tr>
+        <th>Priority</th>
+        <th>Improvement</th>
+        <th>Rationale</th>
+      </tr>
+      <tr>
+        <td><span class="badge yellow">High</span></td>
+        <td>Backend + product database integration</td>
+        <td>Replace static HTML cards with dynamic data</td>
+      </tr>
+      <tr>
+        <td><span class="badge yellow">High</span></td>
+        <td>AI recommendation engine</td>
+        <td>Implement keyword-based NLP for product suggestions</td>
+      </tr>
+      <tr>
+        <td><span class="badge green">Medium</span></td>
+        <td>Real user testing (5 Mongrel Boots customers)</td>
+        <td>Unmoderated usability sessions with target audience</td>
+      </tr>
+      <tr>
+        <td><span class="badge green">Medium</span></td>
+        <td>Performance optimization (WebP, lazy load)</td>
+        <td>Improve LCP score and Core Web Vitals</td>
+      </tr>
+      <tr>
+        <td>Low</td>
+        <td>Progressive Web App (PWA)</td>
+        <td>Service worker + manifest for offline capability</td>
+      </tr>
+    </table>
+
+    <div class="callout" style="margin-top:20px;background:#0D0D0D;">
+      <p style="color:var(--white);">The Mongrel Boots website is not finished. But the designer who started it and the designer submitting it today are meaningfully different — and that difference is the real deliverable of this course.</p>
+    </div>
+
+    <div style="margin-top:24px;text-align:center;font-family:var(--font-mono);font-size:11px;color:#888;">
+      Yifan Zhu — 1653579 — INFO20005 — May 2026
+    </div>
+  </div>
+  <div class="page-footer">
+    <div class="page-footer-info">Mongrel Boots Redesign — Assignment 3B</div>
+    <div class="page-num">11</div>
+  </div>
+</div>
+
+</div><!-- end page-wrapper -->
+</body>
+</html>
