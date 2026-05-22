@@ -89,7 +89,7 @@ The wireframe phase defined structural logic before any visual styling: **angula
 Brand yellow/black fill + angular lines + modular hero shots. Successfully integrates brand tone with functional UI. Clear visual hierarchy: hero → categories → products → CTA.
 
 **Direction 2 — ❌ Glassmorphism/Frosted**
-High visual impact, but blurred backgrounds reduce button discoverability. Mentor feedback confirmed: users miss key CTAs. Rejected.
+High visual impact, but blurred backgrounds reduce button discoverability. Mentor feedback confirmed: users miss key CTAs. This is consistent with research showing that low-contrast or poorly visible interactive elements risk being missed by users, making consent and navigation actions difficult to locate \[5\]. Rejected.
 
 **Direction 3 — ❌ Rounded / Marble Texture**
 Rounded corners and marble backgrounds conflict entirely with "tough outdoor" brand positioning. Rejected in early art direction review.
@@ -214,7 +214,7 @@ mongrel-boots/
 | **Inter** (Google Fonts) | Latest | Body text — high legibility | `<link>` CDN |
 | **JetBrains Mono** (Google Fonts) | Latest | Code/mono labels | `<link>` CDN |
 
-No JavaScript frameworks or CSS libraries (Bootstrap, Tailwind, jQuery) were used. All layout, components and interactivity are written in vanilla HTML5, CSS3, and JavaScript — a deliberate choice to demonstrate front-end fundamentals rather than rely on abstractions.
+No JavaScript frameworks or CSS libraries (Bootstrap, Tailwind, jQuery) were used. All layout, components and interactivity are written in vanilla HTML5, CSS3, and JavaScript — a deliberate choice to demonstrate front-end fundamentals rather than rely on abstractions. While modern frameworks such as Bootstrap, Tailwind CSS, React, and Vue offer rapid scaffolding, they introduce significant abstraction that obscures underlying CSS and layout logic \[6\].
 
 ---
 
@@ -254,10 +254,10 @@ No JavaScript frameworks or CSS libraries (Bootstrap, Tailwind, jQuery) were use
 
 **Color Contrast**
 Yellow (#F5C518) on Black (#0D0D0D) = **9.04:1**
-Passes WCAG AAA (requires 7:1)
+Passes WCAG AAA (requires 7:1) [7]
 
 **Focus Management**
-`:focus-visible` with custom outline replacing browser default — visible but brand-consistent
+`:focus-visible` with custom outline replacing browser default — visible but brand-consistent. Research on mobile app accessibility for users with visual impairments confirms that clear focus and interaction indicators are among the most critical usability factors [8].
 
 ---
 
@@ -293,11 +293,11 @@ I removed the glassmorphism entirely and went with flat, high-contrast surfaces.
 
 At the start of this project, accessibility was a rubric item to satisfy. I knew WCAG existed. I knew contrast ratios mattered. By the end, I actually understood *why*.
 
-The yellow-on-black combination I chose for purely aesthetic reasons — because it looked bold and matched the brand — turned out to also be one of the most accessible color combinations possible (9.04:1 contrast ratio, exceeding WCAG AAA). This was not a coincidence; it was a lesson that **good brand thinking and good accessibility thinking often overlap**, because both require clear, legible communication. Research confirms that compliance with web accessibility standards, including contrast requirements, positively shapes user experience for both disabled and non-disabled users \[1\].
+The yellow-on-black combination I chose for purely aesthetic reasons — because it looked bold and matched the brand — turned out to also be one of the most accessible color combinations possible (9.04:1 contrast ratio, exceeding WCAG AAA). This was not a coincidence; it was a lesson that **good brand thinking and good accessibility thinking often overlap**, because both require clear, legible communication. Research confirms that compliance with web accessibility standards, including contrast requirements, positively shapes user experience for both disabled and non-disabled users \[1\]. Empirical studies further show that higher contrast supports faster searching and reduces visual fatigue, with users reporting a preference for higher-contrast displays \[9\].
 
 **Focus States Mistake & Fix**
 
-I removed the browser's default `:focus` outline because it looked "ugly." This created an interface completely unusable for keyboard navigation. For users who navigate by keyboard, a missing focus state is the equivalent of removing all visual affordances from a touchscreen. Studies on display luminance contrast show that lower contrast is directly associated with greater visual fatigue, confirming that contrast is not merely aesthetic but physiological \[2\].
+I removed the browser's default `:focus` outline because it looked "ugly." This created an interface completely unusable for keyboard navigation. For users who navigate by keyboard, a missing focus state is the equivalent of removing all visual affordances from a touchscreen. Studies on display luminance contrast show that lower contrast is directly associated with greater visual fatigue, confirming that contrast is not merely aesthetic but physiological \[2\]. A broader review of digital accessibility for people with visual impairments found that unclear interactive states and insufficient contrast are among the most frequently reported barriers \[10\].
 
 Fix: Re-implemented `:focus-visible` with a custom styled outline — visible but brand-consistent.
 
@@ -305,7 +305,7 @@ Fix: Re-implemented `:focus-visible` with a custom styled outline — visible bu
 
 In Assignment 1, I proposed an AI recommendation system based on search keyword analysis. Having now built the front-end, I understand this feature far better — and I understand how far from implementation it actually is.
 
-The front-end can support AI recommendations through a simple API call pattern: send the search query to a backend, receive ranked product IDs, render them in the grid. The HTML/CSS structure I built already supports this — the product grid renders from a data structure that can be dynamically populated.
+The front-end can support AI recommendations through a simple API call pattern: send the search query to a backend, receive ranked product IDs, render them in the grid. The HTML/CSS structure I built already supports this — the product grid renders from a data structure that can be dynamically populated. Browser-based tools like Stylette demonstrate that even CSS-level design decisions benefit from natural language intent mapping, showing how front-end code and design intent are increasingly converging \[11\].
 
 > But the AI model itself — the part that actually understands user intent from keywords — requires training data, a real product catalog, and a backend infrastructure I haven't built. This is the gap between design thinking and engineering reality.
 
@@ -435,3 +435,25 @@ I knew HTML existed. I knew CSS was "the styling language." But I thought of cod
 \[3\] Tsai, C., Shih, W., Hsieh, F., Chen, Y., & Lin, C. (2022). Applying the design-based learning model to foster undergraduates' web design skills: the role of knowledge integration. *International Journal of Educational Technology in Higher Education, 19*. https://doi.org/10.1186/s41239-021-00308-4
 
 \[4\] Wilson, D., Hassan, S., Aljohani, N., Visvizi, A., & Nawaz, R. (2022). Demonstrating and negotiating the adoption of web design technologies: Cascading Style Sheets and the CSS Zen Garden. *Internet Histories, 7*, 27–46. https://doi.org/10.1080/24701475.2022.2055274
+
+\[5\] Clarke, J., Mehrnezhad, M., & Toreini, E. (2023). Invisible, Unreadable, and Inaudible Cookie Notices: An Evaluation of Cookie Notices for Users with Visual Impairments. *ACM Transactions on Accessible Computing, 17*, 1–39. https://doi.org/10.1145/3641281
+
+\[6\] Harahap, B., Rambe, A., Ramadhan, M., & Kurniawan, N. (2025). Analisis Framework, Library Front-End Populer: Bootstrap, Tailwind CSS, React, dan Vue Pada Mata Kuliah Perancangan Web Design. *Riau Jurnal Teknik Informatika*. https://doi.org/10.30606/rjti.v4i2.3496
+
+\[7\] Putra, K., Umaroh, S., & Rafina, N. (2024). Web Accessibility Evaluation Using WCAG 2.0 and User-Centered Design Method. *E3S Web of Conferences*. https://doi.org/10.1051/e3sconf/202448402002
+
+\[8\] Al-Razgan, M., Almoaiqel, S., Alrajhi, N., Alhumegani, A., Alshehri, A., Alnefaie, B., AlKhamiss, R., & Rushdi, S. (2021). A systematic literature review on the usability of mobile applications for visually impaired users. *PeerJ Computer Science, 7*. https://doi.org/10.7717/peerj-cs.771
+
+\[9\] Hewitt, D., & He, Y. (2022). Cognitive Load and Website Usability: Effects of Contrast and Task Difficulty. *Proceedings of the Human Factors and Ergonomics Society Annual Meeting, 66*, 1809–1813. https://doi.org/10.1177/1071181322661051
+
+\[10\] Kerdar, S., Bächler, L., & Kirchhoff, B. (2024). The accessibility of digital technologies for people with visual impairment and blindness: a scoping review. *Discover Computing, 27*. https://doi.org/10.1007/s10791-024-09460-7
+
+\[11\] Kim, T., Choi, Y., Choi, D., & Kim, J. (2022). Stylette: Styling the Web with Natural Language. *Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems*. https://doi.org/10.1145/3491102.3501931
+
+\[12\] Lu, M., & Hu, Z. (2025). Leveraging Multimodal Information for Web Front-End Development Instruction: Analyzing Effects on Cognitive Behavior, Interaction, and Persistent Learning. *Information, 16*, 734. https://doi.org/10.3390/info16090734
+
+\[13\] Milasari, M., & Anistyasari, Y. (2025). Code Simulator Website for Project-Based Learning to Enhance Front-End Development Competence. *Journal of Education Technology and Information System*. https://doi.org/10.26740/jetis.v1i01.35642
+
+\[14\] Pradana, F., Setyosarī, P., Ulfa, S., & Hirashima, T. (2023). Development of Gamification-Based E-Learning on Web Design Topic. *International Journal of Interactive Mobile Technologies, 17*, 21–38. https://doi.org/10.3991/ijim.v17i03.36957
+
+\[15\] Maulana, I. (2025). Web Accessibility: Designing User-Friendly Websites for Individuals with Visual Impairments. *Golden Ratio of Data in Summary*. https://doi.org/10.52970/grdis.v5i1.896
