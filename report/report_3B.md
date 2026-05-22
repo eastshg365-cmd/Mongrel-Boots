@@ -6,7 +6,7 @@
 **Submission Date:** May 22, 2026
 **GitHub Repository:** https://github.com/eastshg365-cmd/Mongrel-Boots
 **GitHub Pages (Live Site):** https://github.com/eastshg365-cmd/Mongrel-Boots/tree/main/website
-**Figma Prototype:** https://www.figma.com/design/6XcqXRrwiDd4DP1lnxQUWv/Mobile?node-id=0-1
+**Figma Prototype:** https://www.figma.com/proto/6XcqXRrwiDd4DP1lnxQUWv/Mobile?node-id=0-1&t=AbVQiRV5shjApeZp-1
 
 ---
 
