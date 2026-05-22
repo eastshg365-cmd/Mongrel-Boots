@@ -4,9 +4,9 @@
 **Course:** INFO20005 — User Interface Development
 **Student:** Yifan Zhu — 1653579
 **Submission Date:** May 22, 2026
-**GitHub Repository:** `github.com/[your-username]/mongrel-boots`
+**GitHub Repository:** https://github.com/eastshg365-cmd/Mongrel-Boots
+**GitHub Pages (Live Site):** https://github.com/eastshg365-cmd/Mongrel-Boots/tree/main/website
 **Figma Prototype:** `figma.com/proto/[your-link]`
-**Live Site:** `[your-github-pages-url]`
 
 ---
 
@@ -122,6 +122,20 @@ The first interactive prototype revealed five critical usability failures during
 
 The same visual language was maintained for desktop, reorganising the grid from 2 columns (mobile) → 4 columns (desktop), ensuring responsive design. Navigation shifts from a hamburger menu to a full horizontal nav bar.
 
+### What Changed From Figma to Code
+
+Moving from Figma prototype to actual HTML/CSS revealed several decisions that had to be revised:
+
+| Figma Decision | Code Reality | What Changed |
+|----------------|-------------|-------------|
+| Fixed 390px artboard spacing | Fluid viewport widths | Converted all fixed px margins to `clamp()` / relative units |
+| Glassmorphism hero overlay | `backdrop-filter` has poor Safari support | Replaced with solid dark overlay (#0D0D0D at 50% opacity) |
+| Hover state shown as static frame | `:hover` + `:focus-visible` required separately | Added distinct focus outline for keyboard users — not in original Figma |
+| Product card height fixed at 480px | `aspect-ratio: 3/4` used instead | Allows natural reflow across breakpoints without overflow |
+| Font size fixed at 16px body | `clamp(14px, 2vw, 16px)` for fluid type | Prevents overflow on narrow viewports |
+
+> The most important realisation: Figma is a fixed-canvas tool. The browser is a fluid medium. Every spacing value, image ratio, and font size that "just worked" in Figma required rethinking once pixels became percentages.
+
 ---
 
 <!-- PAGE 5 -->
@@ -179,6 +193,16 @@ mongrel-boots/
   .product-grid { grid-template-columns: repeat(4, 1fr); }
 }
 ```
+
+### 4.4 — External Libraries & Dependencies
+
+| Library | Version | Purpose | Load Method |
+|---------|---------|---------|-------------|
+| **Bebas Neue** (Google Fonts) | Latest | Display/heading typeface | `<link>` CDN |
+| **Inter** (Google Fonts) | Latest | Body text — high legibility | `<link>` CDN |
+| **JetBrains Mono** (Google Fonts) | Latest | Code/mono labels | `<link>` CDN |
+
+No JavaScript frameworks or CSS libraries (Bootstrap, Tailwind, jQuery) were used. All layout, components and interactivity are written in vanilla HTML5, CSS3, and JavaScript — a deliberate choice to demonstrate front-end fundamentals rather than rely on abstractions.
 
 ---
 
@@ -306,7 +330,24 @@ All usability testing was done in Figma preview and a browser window. The first 
 
 ## 9. Self-Assessment Against Rubric
 
-### 9.1 — Criterion Scores
+### 9.1 — Tide Chart Self-Analysis
+
+In Assignment 1, my Tide Chart position reflected a student who understood design *as a visual discipline* — someone comfortable with Figma, colour theory, and layout, but with limited understanding of how design decisions translate to technical implementation.
+
+At the time of this submission, my position has shifted meaningfully:
+
+| Dimension | Assignment 1 Position | Current Position | What Changed |
+|-----------|----------------------|------------------|--------------|
+| **Visual Design** | Strong — confident with Figma, colour, hierarchy | Strong — same foundation, now more systematised | Added design token thinking; every decision is now documented with rationale |
+| **Front-End Code** | Weak — HTML/CSS seen as "translation layer" | Developing — can build responsive layouts from scratch | Built semantic HTML structure, CSS Grid, mobile-first breakpoints without frameworks |
+| **Accessibility** | Checkbox — knew WCAG existed | Understanding — know *why* contrast ratios and focus states matter | Discovered that removing `:focus` breaks keyboard navigation entirely |
+| **Design–Code Relationship** | Sequential: design → then code | Simultaneous: design decisions are code decisions | Changed how I place elements in Figma — now think in Grid columns, not just aesthetics |
+
+What is still "clunky": JavaScript interactions — the cart logic and form validation are functional but not elegant. I understand the DOM manipulation, but structuring JS for maintainability is a skill I'm still developing.
+
+What is 1000% better: I no longer design without asking "how will this be coded?"
+
+### 9.2 — Criterion Scores
 
 | Criterion | Self-Assessment |
 |-----------|----------------|
@@ -317,7 +358,7 @@ All usability testing was done in Figma preview and a browser window. The first 
 | Collaboration Reflected | Good |
 | GitHub / Project Rigor | Full Mark |
 
-### 9.2 — The "Final You" Moment
+### 9.3 — The "Final You" Moment
 
 If there is one thing I want the assessor to take from this report, it is this:
 
