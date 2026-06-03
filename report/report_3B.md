@@ -69,7 +69,7 @@ The Mongrel Boots mood board was built around the brand's existing logo. Yellow-
 
 ![Before and after comparison of Mongrel Boots website redesign](before_after.png)
 
-*Figure 1: LEFT: Original site — cluttered, no e-commerce, poor hierarchy | RIGHT: Redesigned — brand-consistent, full shopping flow*
+*Figure 1: Comparison between the original website (left) and the redesigned interface (right).*
 
 ### Step 3 — Skeleton Design
 
@@ -98,7 +98,7 @@ Rounded corners and marble backgrounds conflict entirely with "tough outdoor" br
 
 ![Mongrel Boots mobile prototype screens](prototype_screens.png)
 
-*Figure 2: Homepage → Search → Product List → Product Detail → Cart → Checkout*
+*Figure 2: Interactive mobile prototype showcasing the complete shopping journey from the homepage to checkout.*
 
 ### Step 5 — Mobile Prototyping & Usability Testing
 
@@ -126,7 +126,7 @@ The same visual language was maintained for desktop, reorganising the grid from 
 
 ![Mongrel Boots redesigned website homepage — Built to Last hero section](website_homepage.png)
 
-*Figure 3: Final coded homepage: black/yellow brand identity, angular typography, semantic HTML structure, fully responsive*
+*Figure 3: Final coded homepage demonstrating the core brand identity, angular typography, and responsive layout.*
 
 ### What Changed From Figma to Code
 
@@ -204,7 +204,7 @@ mongrel-boots/
 
 ![GitHub repository showing website folder with css/, js/, index.html](github_repo.png)
 
-*Figure 4: Repository: `eastshg365-cmd/Mongrel-Boots` — commit history shows milestone-based workflow. Folder structure matches the Technical Code Map above.*
+*Figure 4: GitHub repository structure and commit history demonstrating a milestone-based workflow.*
 
 ### 4.4 — External Libraries & Dependencies
 
