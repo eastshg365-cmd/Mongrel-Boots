@@ -390,23 +390,11 @@ I knew HTML existed. I knew CSS was "the styling language." But I thought of cod
 
 ### 10.1 — What Was Achieved
 
-**Figma Deliverables**
-- Fully interactive mobile prototype — complete shopping journey
-- Desktop adaptation maintaining brand consistency
-- Documented design rationale for all major decisions
-
-**Code Deliverables**
-- HTML5/CSS3 front-end with semantic markup
-- WCAG 2.1 AA accessibility compliance
-- Version-controlled GitHub workflow
+The project successfully delivered a fully interactive mobile and desktop Figma prototype that maps out the complete shopping journey, accompanied by comprehensive design rationale documentation. This design was successfully translated into a functional HTML5/CSS3 front-end featuring semantic markup, strict WCAG 2.1 AA accessibility compliance, and a fully version-controlled GitHub workflow.
 
 ### 10.2 — What Remains (Exam Week — 35%)
 
-- Complete product list page with functional filtering and sorting
-- Cart page with item management (quantity update, remove)
-- Checkout flow with form validation
-- Mobile hamburger nav → slide-in drawer
-- AI search recommendation interface (front-end structure only)
+Moving toward the final exam week milestone, the remaining development focus includes completing the product list page with functional filtering and sorting, adding interactive item management to the cart, and building a fully validated checkout flow. Additional refinements will involve transitioning the mobile hamburger navigation to a slide-in drawer and establishing the foundational front-end structure for the AI search recommendation interface.
 
 ### 10.3 — Future Improvements Beyond This Course
 
